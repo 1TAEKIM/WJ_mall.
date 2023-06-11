@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../css/category.css">
 </head>
 <body>
-   <a href="main.jsp" id="logo"><img src="picture/logo.jpg"></a>
+   <a href="main.jsp" id="logo"><img src="../css/wj_logo.jpg"></a>
    <hr>
 <div id="container">
     <div id="buttons" class="text_align_right">

@@ -25,7 +25,7 @@ public class ProductDAO {
     	return conn;
     }
     
-    public void addProduct(Product product) throws Exception {
+    public void addProduct(Product product) throws SQLException {
         Connection conn = open();
         
         String sql = "INSERT INTO products (category, name, price, description, quantity, imageUrl) "
@@ -50,32 +50,63 @@ public class ProductDAO {
         }
     }
     
-    public Product getProduct(int product_num) throws SQLException{
-    	Connection conn = open();
-    	
-    	Product product = new Product();
-    	String sql = "SELELT * FROM products where product_num=?";
-    	
-    	PreparedStatement pstmt = conn.prepareStatement(sql);
-    	pstmt.setInt(1, product_num);
-    	ResultSet rs = pstmt.executeQuery();
-    	
-    	rs.next();
-    	
-    	try(conn; pstmt){
-    		pstmt.setString(1, product.getCategory());
-    		pstmt.setString(2, product.getName());
-    		pstmt.setInt(3, product.getPrice());
-    		pstmt.setString(4, product.getDescription());
-    		pstmt.setInt(5, product.getQuantity());
-    		pstmt.setString(6, product.getImageUrl());
-    		pstmt.executeQuery();
-    		return product;
-    	}
+    public Product getProduct(int productNum) throws SQLException {
+        Connection conn = open();
+        Product product = null;
+        
+        String sql = "SELECT * FROM products WHERE product_num=?";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setInt(1, productNum);
+        ResultSet rs = pstmt.executeQuery();
+
+        try {
+            if (rs.next()) {
+                product = new Product();
+                product.setProductNum(rs.getInt("product_num"));
+                product.setCategory(rs.getString("category"));
+                product.setName(rs.getString("name"));
+                product.setPrice(rs.getInt("price"));
+                product.setDescription(rs.getString("description"));
+                product.setQuantity(rs.getInt("quantity"));
+                product.setImageUrl(rs.getString("imageUrl"));
+            }
+        } finally {
+            rs.close();
+            pstmt.close();
+            conn.close();
+        }
+
+        return product;
     }
+
+
+    
+//    public Product getProduct(int product_num) throws SQLException{
+//    	Connection conn = open();
+//    	
+//    	Product product = new Product();
+//    	String sql = "SELELT * FROM products where product_num=?";
+//    	
+//    	PreparedStatement pstmt = conn.prepareStatement(sql);
+//    	pstmt.setInt(1, product_num);
+//    	ResultSet rs = pstmt.executeQuery();
+//    	
+//    	rs.next();
+//    	
+//    	try(conn; pstmt){
+//    		pstmt.setString(1, product.getCategory());
+//    		pstmt.setString(2, product.getName());
+//    		pstmt.setInt(3, product.getPrice());
+//    		pstmt.setString(4, product.getDescription());
+//    		pstmt.setInt(5, product.getQuantity());
+//    		pstmt.setString(6, product.getImageUrl());
+//    		pstmt.executeQuery();
+//    		return product;
+//    	}
+//    }
     
     
-    public List<Product> getAllProducts() throws Exception {
+    public List<Product> getAllProducts() throws SQLException {
     	Connection conn = open();
     	List<Product> productList = new ArrayList<>();
     	
@@ -101,7 +132,7 @@ public class ProductDAO {
     }
     
     
-    public List<Product> getAllProductsByCategory(String category) throws Exception {
+    public List<Product> getAllProductsByCategory(String category) throws SQLException {
         Connection conn = open();
         List<Product> productList = new ArrayList<>();
 

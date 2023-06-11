@@ -2,6 +2,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import="productInfo.Product" %>
 <%@ page import="productInfo.ProductDAO" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +21,7 @@
         <a href="joinMembership.jsp">회원가입</a>/<a href="login.jsp">로그인</a>/<a href="myPage.jsp">마이페이지</a>/
         <a href="customerCenter.jsp">고객센터</a>
     </div>
+    </div>
     <br>
     <div id="search">
         <input type="text" name="search" placeholder="검색어를 입력하세요">
@@ -34,6 +36,35 @@
     	&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;<a href="suit_vest.jsp">정장 조끼</a>
 	</div>
     <br>
+    
+<%--     <div id="wrapper">
+    <% 
+    try {
+        ProductDAO productDAO = new ProductDAO();
+        List<Product> productList = productDAO.getAllProductsByCategory("정장 세트");
+        
+        for (Product product : productList) {
+    %>
+    <div class="card">
+        <header><a href="productDetail.jsp?productNum=<%= product.getProductNum() %>"><%= product.getName() %></a></header>
+
+        <img class="product_image" src="<%= product.getImageUrl() %>" alt="Product Image">
+        <p>가격: <%= product.getPrice() %>원</p>
+        <p>설명: <%= product.getDescription() %></p>
+    </div>
+    <% 
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+        out.println("상품 목록을 가져오는 중에 오류가 발생했습니다.");
+    }
+    %>
+    </div> --%>
+    
+    
+    
+    
+    
     <div id="contents">
      
         <%
@@ -60,7 +91,9 @@
                 }
                 // 제품 블록 생성
                 
-                out.println("<div class=\"card\">");
+                //out.println("<div class=\"card\">");
+                //out.println("<header><a href=\"productDetail.jsp?productNum=" + product.getProductNum() + "\">" + product.getName() + "</a></header>");
+				out.println("<div class=\"card\" onclick=\"window.location.href='productDetail.jsp?productNum=" + product.getProductNum() + "'\">");
                 out.println("<header>" + product.getName() + "</header>"); // header 추가
                 out.println("<img class=\"product_image\" src=\"" + product.getImageUrl() + "\">");
                 out.println("<p>" + product.getDescription() + "</p>");
@@ -74,8 +107,11 @@
             }
             out.println("</div>");
         %>
+        
+
+
         </div>
-    </div>
+    
     <div id="footer">
         부가 정보
     </div>
