@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="../css/login.css">
 </head>
 <body>
-   <a href="main.jsp" id="logo">WJ</a>
+   <a href="main.jsp" id="logo"><img src="picture/logo.jpg"></a>
    <hr>
    <div id="regform">
       <form name= "form1" action="/JoinMembershipController" method="GET">

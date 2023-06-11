@@ -99,6 +99,33 @@ public class ProductDAO {
     		return productList;
     	}
     }
+    
+    
+    public List<Product> getAllProductsByCategory(String category) throws Exception {
+        Connection conn = open();
+        List<Product> productList = new ArrayList<>();
+
+        String sql = "SELECT * FROM products WHERE category=?";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, category);
+        ResultSet rs = pstmt.executeQuery();
+
+        try (conn; pstmt; rs) {
+            while (rs.next()) {
+                Product product = new Product();
+                product.setProductNum(rs.getInt("product_num"));
+                product.setCategory(rs.getString("category"));
+                product.setName(rs.getString("name"));
+                product.setPrice(rs.getInt("price"));
+                product.setDescription(rs.getString("description"));
+                product.setQuantity(rs.getInt("quantity"));
+                product.setImageUrl(rs.getString("imageUrl"));
+
+                productList.add(product);
+            }
+            return productList;
+        }
+    }
     	
      public void delProduct(int product_num) throws SQLException{
     	 

@@ -25,16 +25,39 @@ public class JoinMembershipController extends HttpServlet {
         String address = request.getParameter("address");
         
         // JoinMembership 객체 생성
-        JoinMembership joinmembership = new JoinMembership(id, password, name, address);
-        joinmembership.setId(id);
-        joinmembership.setPassword(password);
-        joinmembership.setName(name);
-        joinmembership.setAddress(address);
+//        JoinMembership joinmembership = new JoinMembership(id, password, name, address);
+//        joinmembership.setId(id);
+//        joinmembership.setPassword(password);
+//        joinmembership.setName(name);
+//        joinmembership.setAddress(address);
+//        
+//        //DAO를 사용하여 데이터베이스에 회원 추가 
+//        joinMembershipDAO.addUser(joinmembership);
+		
         
-        // DAO를 사용하여 데이터베이스에 회원 추가
-        joinMembershipDAO.addUser(joinmembership);
+        // Check for duplicate ID
+        boolean isDuplicate = joinMembershipDAO.checkDuplicateId(id);
         
-    }
+        if (isDuplicate) {
+            // Redirect back to the registration page with an error message
+            response.sendRedirect("../views/joinMembership.jsp?error=duplicate");
+        } else {
+            // Create JoinMembership object
+            JoinMembership joinmembership = new JoinMembership(id, password, name, address);
+            joinmembership.setId(id);
+            joinmembership.setPassword(password);
+            joinmembership.setName(name);
+            joinmembership.setAddress(address);
+
+            // Add user to the database
+            joinMembershipDAO.addUser(joinmembership);
+
+            // Redirect to a success page
+            response.sendRedirect("../views/login.jsp");
+        }
+    }		 
+        
+    
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = request.getParameter("id");
         String password = request.getParameter("password");
@@ -48,23 +71,5 @@ public class JoinMembershipController extends HttpServlet {
             response.sendRedirect("../views/login.jsp");
         }
     }
-	/*
-	 * private void addUser(HttpServletRequest request, HttpServletResponse
-	 * response) throws ServletException, IOException { String id =
-	 * request.getParameter("id"); String password =
-	 * request.getParameter("password"); String name = request.getParameter("name");
-	 * String address = request.getParameter("address");
-	 * 
-	 * JoinMembership user = new JoinMembership(id, password, name, address);
-	 * joinMembershipDao.addUser(user);
-	 * 
-	 * response.sendRedirect("success.jsp"); }
-	 */
-	/*
-	 * private void getAllUsers(HttpServletRequest request, HttpServletResponse
-	 * response) throws ServletException, IOException { List<JoinMembership>
-	 * userList = userDao.getAllUsers(); request.setAttribute("userList", userList);
-	 * 
-	 * request.getRequestDispatcher("userList.jsp").forward(request, response); }
-	 */
+
 }

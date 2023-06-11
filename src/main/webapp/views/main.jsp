@@ -19,9 +19,14 @@
         <input type="text" name="search" placeholder="검색어를 입력하세요">
         <button type="button">검색</button>
     </div>
-    <div id="category">
-        카테고리
-    </div>
+        <div id="maincategory">
+   		<a href="main.jsp" class="category-link">
+    	<span class="category-text">메인페이지</span></a>
+    	&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;<a href="suit_set.jsp">정장 세트</a>
+    	&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;<a href="suit_jean.jsp">정장 바지</a>
+    	&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;<a href="suit_jacket.jsp">정장 재킷</a>
+    	&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;<a href="suit_vest.jsp">정장 조끼</a>
+	</div>
     <br>
     <div id="main_content">
         상품 이미지/정보

@@ -15,6 +15,7 @@ import org.apache.commons.beanutils.BeanUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
 import java.sql.SQLException;
 import java.util.List;
@@ -78,8 +79,11 @@ public class ProductController extends HttpServlet {
             }
         }
     }
-    public String addProduct(HttpServletRequest request) {
+    public String addProduct(HttpServletRequest request) throws ServletException, IOException {
         Product product = new Product();
+        
+        // DB 연동시 한글 깨짐 문제 해결 코드 
+     	request.setCharacterEncoding("UTF-8"); // JSP 페이지에서
 
         try {
             // 이미지 파일 저장
@@ -106,24 +110,7 @@ public class ProductController extends HttpServlet {
         return "redirect:/ProductController?action=listProducts";
     }
 
-	/*
-	 * public String addProduct(HttpServletRequest request) { Product product = new
-	 * Product();
-	 * 
-	 * try { // 이미지 파일 저장 Part part = request.getPart("file"); String fileName =
-	 * getFilename(part); if (fileName != null && !fileName.isEmpty()) {
-	 * part.write(fileName); }
-	 * 
-	 * // 입력값을 Product 객체로 매핑 BeanUtils.populate(product,
-	 * request.getParameterMap());
-	 * 
-	 * // 이미지 파일 이름을 Product 객체에도 저장 product.setImageUrl("/picture/" + fileName);
-	 * 
-	 * productDAO.addProduct(product); } catch (Exception e) { e.printStackTrace();
-	 * ctx.log("상품 추가 과정에서 문제 발생!!"); request.setAttribute("error",
-	 * "상품이 정상적으로 등록되지 않았습니다!!"); return listProducts(request); } return
-	 * "redirect:/ProductController?action=listProducts"; }
-	 */
+
     public String listProducts(HttpServletRequest request) {
         List<Product> list;
         try {

@@ -9,8 +9,36 @@ public class JoinMembershipDAO {
     private String jdbcUrl = "jdbc:h2:tcp://localhost/~/shopping_site"; // H2 데이터베이스 URL
     private String dbUsername = "shopping_site"; // H2 데이터베이스 사용자명
     private String dbPassword = "1234"; // H2 데이터베이스 비밀번호
+    
+   
+    public boolean checkDuplicateId(String id) {
+    	
+    	try {
+			Class.forName(jdbcDriver);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+        try (Connection conn = DriverManager.getConnection(jdbcUrl, dbUsername, dbPassword)) {
+            String query = "SELECT COUNT(*) FROM users WHERE id = ?";
+            PreparedStatement statement = conn.prepareStatement(query);
+            statement.setString(1, id);
+            ResultSet resultSet = statement.executeQuery();
 
-
+            if (resultSet.next()) {
+                int count = resultSet.getInt(1);
+                return count > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
+    
+    
+    
     // 사용자 추가
     public void addUser(JoinMembership joinMembership) {
     	try {
@@ -34,6 +62,10 @@ public class JoinMembershipDAO {
             e.printStackTrace();
         }
     }
+    
+    
+    
+    
 
     // 사용자 인증
     public JoinMembership authenticate(String id, String password) {
