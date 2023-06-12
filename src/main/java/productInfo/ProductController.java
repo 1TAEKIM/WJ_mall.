@@ -112,6 +112,7 @@ public class ProductController extends HttpServlet {
 
 
     public String listProducts(HttpServletRequest request) {
+    	
         List<Product> list;
         try {
             list = productDAO.getAllProducts();
@@ -126,6 +127,7 @@ public class ProductController extends HttpServlet {
     }
 
     public String getProduct(HttpServletRequest request) {
+    	
         int product_num = Integer.parseInt(request.getParameter("product_num"));
         try {
             Product product = productDAO.getProduct(product_num);
@@ -140,11 +142,52 @@ public class ProductController extends HttpServlet {
         return "../views/addProduct.jsp"; // 상품 리스트 페이지 경로로 수정
     }
 
+    
+    
+    
+    
+    
+    
+    public String updateProduct(HttpServletRequest request) {
+        int product_num = Integer.parseInt(request.getParameter("product_num"));
+        try {
+            // 기존의 상품 정보를 가져옴
+            Product product = productDAO.getProduct(product_num);
+            
+            // 폼에서 입력받은 새로운 상품 속성 값을 가져와서 업데이트
+            String name = request.getParameter("name");
+            int price = Integer.parseInt(request.getParameter("price"));
+            
+
+            product.setName(name);
+            product.setPrice(price);
+            
+            
+
+            // 상품 정보를 업데이트
+            productDAO.updateProduct(product);
+            
+            return "../views/product_mage.jsp"; // 상품 상세 페이지 경로로 수정
+            
+            
+            // return "redirect:/ProductController?action=listProducts"; // 상품 목록으로 리다이렉트
+        } catch (SQLException e) {
+            e.printStackTrace();
+            ctx.log("상품 업데이트 과정에서 문제 발생!!");
+            request.setAttribute("error", "상품이 정상적으로 업데이트되지 않았습니다!!");
+            return listProducts(request);
+        }
+    }
+
     public String deleteProduct(HttpServletRequest request) {
         int product_num = Integer.parseInt(request.getParameter("product_num"));
         try {
-            productDAO.delProduct(product_num);
-            return "redirect:/ProductController?action=listProducts"; // 상품 목록으로 리다이렉트
+            // 상품 삭제
+            productDAO.deleteProduct(product_num);
+            
+            return "../views/product_mage.jsp"; // 상품 상세 페이지 경로로 수정
+            
+            //return "redirect:/ProductController?action=listProducts"; // 상품 목록으로 리다이렉트
         } catch (SQLException e) {
             e.printStackTrace();
             ctx.log("상품 삭제 과정에서 문제 발생!!");
@@ -152,6 +195,42 @@ public class ProductController extends HttpServlet {
             return listProducts(request);
         }
     }
+    
+    
+    
+    
+    public String purchaseProduct(HttpServletRequest request) {
+        int productNum = Integer.parseInt(request.getParameter("productNum"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+
+        try {
+            Product product = productDAO.getProduct(productNum);
+            int availableQuantity = product.getQuantity();
+
+            if (availableQuantity >= quantity) {
+                // 재고가 충분한 경우, 상품 수량 감소 처리
+                productDAO.updateProductQuantity(productNum, availableQuantity - quantity);
+                request.setAttribute("message", "구매가 완료되었습니다.");
+            } else {
+                // 재고가 부족한 경우, 에러 메시지 설정
+                request.setAttribute("error", "수량이 부족합니다.");
+            }
+
+            // 상품 상세 페이지로 이동
+            return "productDetail.jsp"; // 상품 상세 페이지 경로로 수정
+        } catch (SQLException e) {
+            e.printStackTrace();
+            ctx.log("상품 구매 과정에서 문제 발생!!");
+            request.setAttribute("error", "상품 구매 중 오류가 발생했습니다.");
+            return "error.jsp"; // 오류 페이지 경로로 수정
+        }
+    }
+    
+    
+    
+    
+    
+    
 
     private String getFilename(Part part) {
         String fileName = null;

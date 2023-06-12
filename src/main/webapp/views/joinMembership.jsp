@@ -89,7 +89,7 @@ function checkDuplicateId() {
 
 </head>
 <body>
-   <a href="main.jsp" id="logo"><img src="picture/logo.jpg"></a>
+   <a href="main.jsp" id="logo"><img src="../css/wj_logo.jpg"></a>
    <hr>
     <h2>회원가입</h2>
     <form id="signup-form" action="/JoinMembershipController" method="POST" onsubmit="return validateForm()">

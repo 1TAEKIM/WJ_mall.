@@ -15,14 +15,18 @@ public class ProductDAO {
     private String dbPassword = "1234"; // H2 데이터베이스 비밀번호
     
     public Connection open() {
-    	Connection conn = null;
-    	try {
-    		Class.forName(jdbcDriver);
-    		conn = DriverManager.getConnection(jdbcUrl, dbUsername, dbPassword);
-    	} catch (Exception e) {
-    		e.printStackTrace();
-    	}
-    	return conn;
+        Connection conn = null;
+        try {
+            Class.forName(jdbcDriver);
+            conn = DriverManager.getConnection(jdbcUrl, dbUsername, dbPassword);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            // JDBC 드라이버 클래스를 찾을 수 없는 경우 처리
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // 데이터베이스 연결 예외 처리
+        }
+        return conn;
     }
     
     public void addProduct(Product product) throws SQLException {
@@ -157,19 +161,69 @@ public class ProductDAO {
             return productList;
         }
     }
+    
+ 
+ 
+     
+   
+    
+    
+    public void updateProductQuantity(int productNum, int quantity) throws SQLException {
+        Connection conn = open();
+
+        try {
+            String sql = "UPDATE products SET quantity = ? WHERE product_num = ?";
+            try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.setInt(1, quantity);
+                pstmt.setInt(2, productNum);
+                pstmt.executeUpdate(); // Update the product quantity
+            }
+        } finally {
+            conn.close();
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
     	
-     public void delProduct(int product_num) throws SQLException{
-    	 
-    	 Connection conn = open();
-    	 String sql = "DELELT FROM products where product_num=?";
-    	 PreparedStatement pstmt = conn.prepareStatement(sql);
-    	 
-    	 try(conn; pstmt){
-    		 pstmt.setInt(1, product_num);
-    		 if(pstmt.executeUpdate() == 0) {
-    			 throw new SQLException("DB에러");
-    		 }
-    	 }
-    	 
-     }
+    public void updateProduct(Product product) throws SQLException {
+        Connection conn = open();
+
+        String sql = "UPDATE products SET category=?, name=?, price=?, description=?, quantity=?, imageUrl=? "
+                + "WHERE product_num=?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, product.getCategory());
+            pstmt.setString(2, product.getName());
+            pstmt.setInt(3, product.getPrice());
+            pstmt.setString(4, product.getDescription());
+            pstmt.setInt(5, product.getQuantity());
+            pstmt.setString(6, product.getImageUrl());
+            pstmt.setInt(7, product.getProductNum());
+
+            pstmt.executeUpdate(); // 데이터베이스에 데이터를 업데이트
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            conn.close();
+        }
+    }
+
+    public void deleteProduct(int productNum) throws SQLException {
+        Connection conn = open();
+
+        String sql = "DELETE FROM products WHERE product_num=?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, productNum);
+            pstmt.executeUpdate(); // 데이터베이스에서 데이터를 삭제
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            conn.close();
+        }
+    }
 }

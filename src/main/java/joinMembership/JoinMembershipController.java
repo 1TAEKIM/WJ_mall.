@@ -18,6 +18,8 @@ public class JoinMembershipController extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	
+    	request.setCharacterEncoding("UTF-8");
         // JSP 페이지에서 전달된 데이터 가져오기
     	String id = request.getParameter("id");
         String password = request.getParameter("password");
@@ -43,7 +45,7 @@ public class JoinMembershipController extends HttpServlet {
             response.sendRedirect("../views/joinMembership.jsp?error=duplicate");
         } else {
             // Create JoinMembership object
-            JoinMembership joinmembership = new JoinMembership(id, password, name, address);
+            JoinMembership joinmembership = new JoinMembership(id, password, name, address, "false");
             joinmembership.setId(id);
             joinmembership.setPassword(password);
             joinmembership.setName(name);
@@ -65,8 +67,12 @@ public class JoinMembershipController extends HttpServlet {
         JoinMembership user = joinMembershipDAO.authenticate(id, password);
 
         if (user != null) {
-            request.getSession().setAttribute("user", user);
-            response.sendRedirect("../views/main.jsp");
+            if (user.getPermission().equals("true")) {
+                response.sendRedirect("../views/admin_main.jsp");
+            } else {
+                request.getSession().setAttribute("user", user);
+                response.sendRedirect("../views/main.jsp");
+            }
         } else {
             response.sendRedirect("../views/login.jsp");
         }

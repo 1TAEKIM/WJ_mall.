@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-   <a href="main.jsp" id="logo">WJ_mall</a>
+   <a href="main.jsp" id="logo"><img src="../css/wj_logo.jpg"></a>
    <hr>
 <div id="container">
     <div id="buttons" class="text_align_right">
@@ -57,7 +57,7 @@
     } catch (Exception e) {
         e.printStackTrace();
         out.println("상품 목록을 가져오는 중에 오류가 발생했습니다.");
-    }
+    }4eaz //;;//////////////;;;;;;;;;;;;  41
     %>
     </div> --%>
     
@@ -72,14 +72,14 @@
             ProductDAO productDAO = new ProductDAO();
 
      		// products 테이블에서 "정장 세트" 카테고리의 제품 목록 가져오기
-        	List<Product> productList = productDAO.getAllProductsByCategory("정장 세트");
+        	//List<Product> productList = productDAO.getAllProductsByCategory("정장 세트");
             
      		// 모든 상품 리스트 가져오기
-     		//List<Product> productList = productDAO.getAllProducts();
+     		List<Product> productList = productDAO.getAllProducts();
      		
      		
      		// 한 줄에 표시할 제품 수 설정
-            int itemsPerRow = 3;
+            int itemsPerRow = 5;
 
             // 제품 목록을 블록 형식으로 표시
                 out.println("<div id=\"wrapper\">"); // wrapper 추가

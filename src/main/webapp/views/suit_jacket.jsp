@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-   <a href="main.jsp" id="logo">WJ_mall</a>
+   <a href="main.jsp" id="logo"><img src="../css/wj_logo.jpg"></a>
    <hr>
 <div id="container">
     <div id="buttons" class="text_align_right">
@@ -79,7 +79,7 @@
      		
      		
      		// 한 줄에 표시할 제품 수 설정
-            int itemsPerRow = 3;
+            int itemsPerRow = 5;
 
             // 제품 목록을 블록 형식으로 표시
                 out.println("<div id=\"wrapper\">"); // wrapper 추가
