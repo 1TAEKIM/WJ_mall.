@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>WJ_mail 회원가입</title>
 <link rel="stylesheet" type="text/css" href="../css/joinMembership.css">
-
+<link rel="stylesheet" type="text/css" href="../css/category.css">
 <script>
 function checkDuplicateId() {
     var id = document.getElementById("id").value;
@@ -89,10 +89,9 @@ function checkDuplicateId() {
 
 </head>
 <body>
-   <a href="main.jsp" id="logo"><img src="../css/wj_logo.jpg"></a>
-   <hr>
-    <h2>회원가입</h2>
+   <a href="main.jsp" id="logo"><img src="../css/wj_logo.png" class="logo-image"></a>
     <form id="signup-form" action="/JoinMembershipController" method="POST" onsubmit="return validateForm()">
+   		<h2>회원가입</h2>
         <!-- Form fields -->
         <label for="name">이름:</label>
         <input type="text" id="name" name="name" required><br>

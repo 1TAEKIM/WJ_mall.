@@ -1,6 +1,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="productInfo.Product" %>
 <%@ page import="productInfo.ProductDAO" %>
+<%@ page import="joinMembership.JoinMembership" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%
@@ -13,10 +14,29 @@
 <html>
 <head>
    <title>Product Management</title>
+   <link rel="stylesheet" type="text/css" href="../css/category.css">
+   <link rel="stylesheet" type="text/css" href="../css/adminmage2.css">
    <meta charset="UTF-8">
 </head>
 <body>
-   <h1>Product Management</h1> <br><a href="/ProductController?action=ProductReg">상품 등록하기</a>
+	<a href="main.jsp" id="logo"><img src="../css/wj_logo.png" class="logo-image"></a>
+<div id="container">
+    <div id="buttons" class="text_align_right">
+    <% if (session.getAttribute("user") != null) { %>
+        <% JoinMembership user = (JoinMembership) session.getAttribute("user"); %>
+        <% if (user.getPermission().equals("true")) { %>
+            <a href="admin_mage.jsp">회원 관리</a>/<a href="product_mage.jsp">상품 관리</a>/<a href="/JoinMembershipController?logout=true">로그아웃</a>
+        <% } else { %>
+            <a href="/JoinMembershipController?logout=true">로그아웃</a>
+        <% } %>
+    <% } else { %>
+        <a href="joinMembership.jsp">회원가입</a>/<a href="login.jsp">로그인</a>
+    <% } %>
+</div>
+	</div>
+    <br>
+
+   <h2>Product Management</h2> <br><a href="/ProductController?action=ProductReg">상품 등록하기</a>
    
    <!-- Display the product listings -->
    <table>
@@ -63,5 +83,6 @@
          </tr>
       <% } %>
    </table>
+
 </body>
 </html>

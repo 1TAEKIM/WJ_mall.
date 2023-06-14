@@ -3,10 +3,11 @@
 <%@ page import="productInfo.Product" %>
 <%@ page import="productInfo.ProductDAO" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="joinMembership.JoinMembership" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>WJ_mail 정장 세트</title>
+    <title>WJ_mail 정장 바지</title>
     <!-- <link rel="stylesheet" type="text/css" href="../css/mainPage.css"> -->
     <link rel="stylesheet" type="text/css" href="../css/category.css">
     <link rel="stylesheet" type="text/css" href="../css/products_list.css">
@@ -14,19 +15,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-   <a href="main.jsp" id="logo"><img src="../css/wj_logo.jpg"></a>
-   <hr>
+   <a href="main.jsp" id="logo"><img src="../css/wj_logo.png" class="logo-image"></a>
 <div id="container">
     <div id="buttons" class="text_align_right">
-        <a href="joinMembership.jsp">회원가입</a>/<a href="login.jsp">로그인</a>/<a href="myPage.jsp">마이페이지</a>/
-        <a href="customerCenter.jsp">고객센터</a>
-    </div>
+    <% if (session.getAttribute("user") != null) { %>
+        <% JoinMembership user = (JoinMembership) session.getAttribute("user"); %>
+        <% if (user.getPermission().equals("true")) { %>
+            <a href="admin_mage.jsp">회원 관리</a>/<a href="product_mage.jsp">상품 관리</a>/<a href="/JoinMembershipController?logout=true">로그아웃</a>
+        <% } else { %>
+            <a href="/JoinMembershipController?logout=true">로그아웃</a>
+        <% } %>
+    <% } else { %>
+        <a href="joinMembership.jsp">회원가입</a>/<a href="login.jsp">로그인</a>
+    <% } %>
+</div>
     </div>
     <br>
-    <div id="search">
-        <input type="text" name="search" placeholder="검색어를 입력하세요">
-        <button type="button">검색</button>
-    </div>
     <div id="maincategory">
    		<a href="main.jsp" class="category-link">
     	<span class="category-text">메인페이지</span></a>
@@ -57,7 +61,7 @@
     } catch (Exception e) {
         e.printStackTrace();
         out.println("상품 목록을 가져오는 중에 오류가 발생했습니다.");
-    }4eaz //;;//////////////;;;;;;;;;;;;  41
+    }
     %>
     </div> --%>
     
@@ -72,14 +76,14 @@
             ProductDAO productDAO = new ProductDAO();
 
      		// products 테이블에서 "정장 세트" 카테고리의 제품 목록 가져오기
-        	//List<Product> productList = productDAO.getAllProductsByCategory("정장 세트");
+        	List<Product> productList = productDAO.getAllProductsByCategory("정장 세트");
             
      		// 모든 상품 리스트 가져오기
-     		List<Product> productList = productDAO.getAllProducts();
+     		//List<Product> productList = productDAO.getAllProducts();
      		
      		
      		// 한 줄에 표시할 제품 수 설정
-            int itemsPerRow = 5;
+            int itemsPerRow = 2;
 
             // 제품 목록을 블록 형식으로 표시
                 out.println("<div id=\"wrapper\">"); // wrapper 추가
@@ -113,7 +117,7 @@
         </div>
     
     <div id="footer">
-        부가 정보
+        <p>(xxxooo) xx시 xx구 WJmall Tel. 000-000-0000</p>
     </div>
 
 <script>

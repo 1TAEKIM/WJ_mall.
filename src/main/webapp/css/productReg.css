@@ -1,26 +1,61 @@
 @charset "UTF-8";
 
-*{
-	margin: 0;
-	padding:0;
-	box-sizing: border-box;
-}
-#container{
-	width:1800px;
-	margin:5px auto;
-}
-a {
-	text-decoration: none; /* 링크에 밑줄 제거 */
-	color: inherit; /* 링크의 기본 색상 유지 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
 }
 
-a:visited {
-	color: inherit; /* 방문한 링크의 색상 유지 */
+hr {
+    margin: 20px 0;
 }
 
-a:hover, a:focus {
-	outline: none; /* 클릭 포커스 시 아웃라인 제거 */
+h2 {
+	text-align: center;
+    color: #333;
 }
-.text_align_right{
-	text-align: right;
+
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+label {
+    display: inline-block;
+    width: 100px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+button[type="submit"],
+button[type="button"] {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+button[type="submit"] {
+    margin-right: 10px;
+    margin: 10px 0;
+}
+
+button[type="button"]:hover,
+button[type="submit"]:hover {
+    background-color: #555;
 }

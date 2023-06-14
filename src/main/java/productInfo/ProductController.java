@@ -218,6 +218,7 @@ public class ProductController extends HttpServlet {
 
             // 상품 상세 페이지로 이동
             return "productDetail.jsp"; // 상품 상세 페이지 경로로 수정
+            
         } catch (SQLException e) {
             e.printStackTrace();
             ctx.log("상품 구매 과정에서 문제 발생!!");

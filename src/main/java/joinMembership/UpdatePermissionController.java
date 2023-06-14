@@ -25,6 +25,6 @@ public class UpdatePermissionController extends HttpServlet {
 
         joinMembershipDAO.updatePermission(id, permission);
 
-        response.sendRedirect("../views/admin_main.jsp");
+        response.sendRedirect("../views/admin_mage.jsp");
     }
 }

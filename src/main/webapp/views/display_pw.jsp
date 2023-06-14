@@ -5,12 +5,15 @@
     <meta charset="UTF-8">
     <title>비밀번호 확인</title>
     <link rel="stylesheet" type="text/css" href="../css/display_pw.css">
+    <link rel="stylesheet" type="text/css" href="../css/category.css">
+    <link rel="stylesheet" type="text/css" href="../css/login.css">
 </head>
 <body>
-    <a href="../views/main.jsp" id="logo"><img src="../css/wj_logo.jpg"></a>
-    <hr>
+    <a href="../views/main.jsp" id="logo"><img src="../css/wj_logo.png"></a>
     <div id="pwform">
+    	<form>
         <h2>비밀번호 확인</h2>
+        <hr>
         <% if (request.getAttribute("password") != null) { %>
             <label>아이디:</label><br>
             <p><%= request.getAttribute("id") %></p>
@@ -21,6 +24,7 @@
             <p><%= request.getAttribute("message") %></p>
         <% } %>
         <a href="../views/find_id.jsp" class="button">아이디 찾기로 돌아가기</a>
+        </form>
     </div>
 </body>
 </html>

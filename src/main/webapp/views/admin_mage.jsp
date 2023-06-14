@@ -14,13 +14,13 @@ request.setAttribute("users", userList);
 <head>
     <meta charset="UTF-8">
     <title>Admin Main</title>
-    <link rel="stylesheet" type="text/css" href="../css/admin_main.css">
+    <link rel="stylesheet" type="text/css" href="../css/adminmage.css">
+    <link rel="stylesheet" type="text/css" href="../css/category.css">
 </head>
 <body>
-    <a href="main.jsp" id="logo"><img src="../css/wj_logo.jpg"></a>
-    <hr>
-    <h2>Admin Main</h2>
+    <a href="main.jsp" id="logo"><img src="../css/wj_logo.png"></a>
     <table>
+    <h2>Admin Main</h2>
         <tr>
             <th>ID</th>
             <th>Name</th>

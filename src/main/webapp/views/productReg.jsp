@@ -1,33 +1,20 @@
 <%@ page import="productInfo.Product" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="joinMembership.JoinMembership" %>
 <!DOCTYPE html>
 <html>
 <head>
     <title>WJ_mail 상품 등록</title>
     <link rel="stylesheet" type="text/css" href="../css/productReg.css">
     <link rel="stylesheet" type="text/css" href="../css/category.css">
+    <link rel="stylesheet" type="text/css" href="../css/login.css">
 </head>
 <body>
-<a href="main.jsp" id="logo"><img src="picture/logo.jpg"></a>
-   <hr>
+   <a href="main.jsp" id="logo"><img src="../css/wj_logo.png" class="logo-image"></a>
 <div id="container">
-    <div id="buttons" class="text_align_right">
-        <a href="joinMembership.jsp">회원가입</a>/<a href="login.jsp">로그인</a>/<a href="myPage.jsp">마이페이지</a>/
-        <a href="customerCenter.jsp">고객센터</a>
-    </div>
-    <br>
-    <div id="search">
-        <input type="text" name="search" placeholder="검색어를 입력하세요">
-        <button type="button">검색</button>
-    </div>
-    <div id="maincategory">
-   		<a href="main.jsp" class="category-link">
-    	<span class="category-text">메인페이지</span>
-		</a>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;<a href="productList.jsp">상품목록</a>
-	</div>
 	
-    <h1>상품 등록</h1>
     <form action ="/ProductController?action=addProduct" method="POST" enctype="multipart/form-data">
+    <h2>상품 등록</h2>
         <label for="category">카테고리:</label>
         <!-- <input type="text" id="category" name="category" required><br><br> -->
         <select id="category" name="category" required>
@@ -52,7 +39,9 @@
         <label for="imageUrl">이미지:</label>
         <input type="file" id="imageUrl" name="file" required><br><br>
 
-        <input type="submit" value="등록">
+        <div class="table-actions">
+		<button type="submit">등록</button>
+		</div>
     </form>
     </div>
 </body>

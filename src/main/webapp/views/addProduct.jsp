@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../css/productReg.css">
 </head>
 <body>
+
     <h2>등록된 상품 목록</h2>
     <table>
         <tr>

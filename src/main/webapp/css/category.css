@@ -13,8 +13,9 @@
     height: 80px;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
-#logo img {
+#logo-image {
   display: block;
   margin: 0 auto;
 }
@@ -24,4 +25,17 @@
     height: 30px;
     text-align: right;
     background-color: transparent;
+}
+#logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#footer {
+   width: 100%;
+   height: 60px;
+   background-color: #D2B48C;
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }

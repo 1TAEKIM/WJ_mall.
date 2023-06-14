@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/FindIdController")
 public class FindIdController extends HttpServlet {
-    private JoinMembershipDAO joinMembershipDAO;
+	private JoinMembershipDAO joinMembershipDAO;
 
     public void init() {
         joinMembershipDAO = new JoinMembershipDAO();
@@ -17,20 +17,21 @@ public class FindIdController extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-    	request.setCharacterEncoding("UTF-8");
-    	String name = request.getParameter("name");
+        request.setCharacterEncoding("UTF-8");
+        String name = request.getParameter("name");
         String password = request.getParameter("password");
 
         JoinMembership user = joinMembershipDAO.findUserByNameAndPassword(name, password);
 
         if (user != null) {
-            request.setAttribute("user", user);
-            request.getRequestDispatcher("/views/display_id.jsp").forward(request, response);
+        	request.setAttribute("name", user.getName());
+            request.setAttribute("id", user.getId());
+            request.setAttribute("password", user.getPassword());
         } else {
-            String message = "입력하신 정보가 없습니다!";
+            String message = "입력하신 아이디가 존재하지 않습니다!";
             request.setAttribute("message", message);
-            request.getRequestDispatcher("/views/find_id.jsp").forward(request, response);
         }
+        
+        request.getRequestDispatcher("/views/display_id.jsp").forward(request, response);
     }
 }

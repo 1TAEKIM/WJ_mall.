@@ -1,0 +1,56 @@
+/* styles.css */
+
+/* General styles */
+body {
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+/* Product image */
+table img {
+  max-width: 100px;
+  max-height: 100px;
+}
+
+/* Modify and delete buttons */
+form button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+form button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+/* Product update form */
+form[action="/ProductController"] {
+  margin-bottom: 10px;
+}
+
+form[action="/ProductController"] input[type="text"] {
+  width: 150px;
+  margin-right: 10px;
+}
+

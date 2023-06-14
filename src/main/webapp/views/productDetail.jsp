@@ -3,7 +3,7 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="productInfo.Product" %>
 <%@ page import="productInfo.ProductDAO" %>
-
+<%@ page import="joinMembership.JoinMembership" %>
 <%@ page isELIgnored="false" %>
 
 <%
@@ -31,12 +31,42 @@
 <html>
 <head>
     <title>Product Detail - ${product.name}</title>
+    <link rel="stylesheet" type="text/css" href="../css/mainPage.css">
+    <link rel="stylesheet" type="text/css" href="../css/category.css">
+    <link rel="stylesheet" type="text/css" href="../css/products_list.css">
+    <link rel="stylesheet" type="text/css" href="../css/productDetail.css">
 </head>
 <body>
-    <h1><%= product.getName() %></h1>
-    <p>Price: <%= product.getPrice() %></p>
-    <p>Description: <%= product.getDescription() %></p>
-    <img src="<%= product.getImageUrl() %>" alt="Product Image">
+<a href="main.jsp" id="logo"><img src="../css/wj_logo.png" class="logo-image"></a>
+<div id="container">
+    <div id="buttons" class="text_align_right">
+    <% if (session.getAttribute("user") != null) { %>
+        <% JoinMembership user = (JoinMembership) session.getAttribute("user"); %>
+        <% if (user.getPermission().equals("true")) { %>
+            <a href="admin_mage.jsp">회원 관리</a>/<a href="product_mage.jsp">상품 관리</a>/<a href="/JoinMembershipController?logout=true">로그아웃</a>
+        <% } else { %>
+            <a href="/JoinMembershipController?logout=true">로그아웃</a>
+        <% } %>
+    <% } else { %>
+        <a href="joinMembership.jsp">회원가입</a>/<a href="login.jsp">로그인</a>
+    <% } %>
+</div>
+</div>
+<br>
+        <div id="maincategory">
+   		<a href="main.jsp" class="category-link">
+    	<span class="category-text">메인페이지</span></a>
+    	&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;<a href="suit_set.jsp">정장 세트</a>
+    	&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;<a href="suit_jean.jsp">정장 바지</a>
+    	&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;<a href="suit_jacket.jsp">정장 재킷</a>
+    	&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;<a href="suit_vest.jsp">정장 조끼</a>
+	</div>
+    <br>
+    <div class="product-box">
+  <h2><%= product.getName() %></h2>
+  <p><h3>Price: <%= product.getPrice() %></h3></p>
+  <p>Description: <%= product.getDescription() %></p>
+  <img src="<%= product.getImageUrl() %>" alt="Product Image">
 
     <%-- Display the message if it exists --%>
     <% if (message != null) { %>
@@ -57,9 +87,9 @@
             <input type="submit" value="Purchase">
         </form>
     <% } else { %>
-        <p>Sorry, this product is currently out of stock.</p>
+        <p>죄송합니다! 상품 재고가 없습니다.</p>
     <% } %>
-
+</div>
     <%-- Display other product details as needed --%>
 </body>
 </html>
