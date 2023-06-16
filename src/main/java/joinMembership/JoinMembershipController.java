@@ -74,40 +74,18 @@ public class JoinMembershipController extends HttpServlet {
     
     
     
-    
-    protected void doLogout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        HttpSession session = request.getSession();
-        session.removeAttribute("user");
-        session.invalidate();
-        response.sendRedirect("../views/main.jsp");
-    }
 
-    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        String logout = request.getParameter("logout");
-        if (logout != null && logout.equals("true")) {
-            doLogout(request, response);
-            return; // 작업을 완료하고 다른 페이지로 이동했으므로 return문을 추가하여 메서드 실행을 종료합니다.
-        }
-        super.service(request, response);
-    }
-
-    
-    
-    
-
-	/*
-	 * protected void doLogout(HttpServletRequest request, HttpServletResponse
-	 * response) throws ServletException, IOException {
-	 * request.setCharacterEncoding("UTF-8"); HttpSession session =
-	 * request.getSession(); session.removeAttribute("user"); session.invalidate();
-	 * response.sendRedirect("../views/main.jsp"); }
-	 * 
-	 * protected void service(HttpServletRequest request, HttpServletResponse
-	 * response) throws ServletException, IOException {
-	 * request.setCharacterEncoding("UTF-8"); String logout =
-	 * request.getParameter("logout"); if (logout != null && logout.equals("true"))
-	 * { doLogout(request, response); } else { super.service(request, response); } }
-	 */
+	
+	  protected void doLogout(HttpServletRequest request, HttpServletResponse
+	  response) throws ServletException, IOException {
+	  request.setCharacterEncoding("UTF-8"); HttpSession session =
+	  request.getSession(); session.removeAttribute("user"); session.invalidate();
+	  response.sendRedirect("../views/main.jsp"); }
+	  
+	  protected void service(HttpServletRequest request, HttpServletResponse
+	  response) throws ServletException, IOException {
+	  request.setCharacterEncoding("UTF-8"); String logout =
+	  request.getParameter("logout"); if (logout != null && logout.equals("true"))
+	  { doLogout(request, response); } else { super.service(request, response); } }
+	 
 }

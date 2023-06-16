@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../css/productReg.css">
 </head>
 <body>
-
+    <a href="/ProductController?action=ProductReg">다른 상품 등록하기</a>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;<a href="../views/main.jsp">메인 페이지로 가기</a>
     <h2>등록된 상품 목록</h2>
     <table>
         <tr>
@@ -36,6 +36,8 @@
 
     
     <br>
-    <a href="/ProductController?action=ProductReg">다른 상품 등록하기</a>
+<!--     <a href="/ProductController?action=ProductReg">다른 상품 등록하기</a>
+    <a href="../views/main.jsp">메인 페이지로 가기</a> -->
+    
 </body>
 </html>
