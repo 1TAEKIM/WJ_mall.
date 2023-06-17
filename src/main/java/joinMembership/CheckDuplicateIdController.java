@@ -18,9 +18,9 @@ import javax.servlet.http.HttpServletResponse;
 public class CheckDuplicateIdController extends HttpServlet {
 	
     private String jdbcDriver = "org.h2.Driver";
-    private String jdbcUrl = "jdbc:h2:tcp://localhost/~/shopping_site"; // H2 database URL
-    private String dbUsername = "shopping_site"; // H2 database username
-    private String dbPassword = "1234"; // H2 database password
+    private String jdbcUrl = "jdbc:h2:tcp://localhost/~/shopping_site"; 
+    private String dbUsername = "shopping_site"; 
+    private String dbPassword = "1234"; 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

@@ -15,7 +15,6 @@ public class JoinMembership {
         this.permission = permission;
     }
 
-    // Getters and setters for the fields
 
     public String getId() {
         return id;

@@ -43,8 +43,6 @@
             // ProductDAO 인스턴스 생성
             ProductDAO productDAO = new ProductDAO();
 
-     		// products 테이블에서 "정장 세트" 카테고리의 제품 목록 가져오기
-        	//List<Product> productList = productDAO.getAllProductsByCategory("정장 재킷");
             
      		// 모든 상품 리스트 가져오기
      		List<Product> productList = productDAO.getAllProducts();
@@ -54,7 +52,7 @@
             int itemsPerRow = 5;
 
             // 제품 목록을 블록 형식으로 표시
-                out.println("<div id=\"wrapper\">"); // wrapper 추가
+                out.println("<div id=\"wrapper\">");
             for (int i = 0; i < productList.size(); i++) {
                 Product product = productList.get(i);
                 if (i % itemsPerRow == 0) {
@@ -63,8 +61,6 @@
                 }
                 // 제품 블록 생성
                 
-                //out.println("<div class=\"card\">");
-                //out.println("<header><a href=\"productDetail.jsp?productNum=" + product.getProductNum() + "\">" + product.getName() + "</a></header>");
 				out.println("<div class=\"card\" onclick=\"window.location.href='productDetail.jsp?productNum=" + product.getProductNum() + "'\">");
                 out.println("<header>" + product.getName() + "</header>"); // header 추가
                 out.println("<img class=\"product_image\" src=\"" + product.getImageUrl() + "\">");
