@@ -28,7 +28,7 @@ public class ProductController extends HttpServlet {
     private ProductDAO productDAO;
     private ServletContext ctx;
 
-    // 웹 리소스 기본 경로 지정
+
     private final String START_PAGE = "../views/productReg.jsp";
 
     public void init(ServletConfig config) throws ServletException {

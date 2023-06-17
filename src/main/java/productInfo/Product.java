@@ -11,7 +11,7 @@ public class Product {
     private String imageUrl;
     
     public Product() {
-        // 기본 생성자
+
     }
     
     public Product(int productNum, String category, String name, int price, String description, int quantity, String imageUrl) {
@@ -24,7 +24,7 @@ public class Product {
         this.imageUrl = imageUrl;
     }
 
-    // Getters and setters
+
 
     public int getProductNum() {
         return productNum;

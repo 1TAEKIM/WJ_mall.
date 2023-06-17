@@ -10,9 +10,9 @@ import java.util.List;
 
 public class ProductDAO {
 	private String jdbcDriver = "org.h2.Driver";
-    private String jdbcUrl = "jdbc:h2:tcp://localhost/~/shopping_site"; // H2 데이터베이스 URL
-    private String dbUsername = "shopping_site"; // H2 데이터베이스 사용자명
-    private String dbPassword = "1234"; // H2 데이터베이스 비밀번호
+    private String jdbcUrl = "jdbc:h2:tcp://localhost/~/shopping_site";
+    private String dbUsername = "shopping_site";
+    private String dbPassword = "1234";
     
     public Connection open() {
         Connection conn = null;
@@ -21,10 +21,10 @@ public class ProductDAO {
             conn = DriverManager.getConnection(jdbcUrl, dbUsername, dbPassword);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-            // JDBC 드라이버 클래스를 찾을 수 없는 경우 처리
+            
         } catch (SQLException e) {
             e.printStackTrace();
-            // 데이터베이스 연결 예외 처리
+           
         }
         return conn;
     }
