@@ -68,7 +68,7 @@ public class ProductController extends HttpServlet {
             response.sendRedirect(request.getContextPath() + rview);
         } else {
             if (view != null) {
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/views/" + view);  // 경로 수정
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/views/" + view); 
                 if (dispatcher != null) {
                     dispatcher.forward(request, response);
                 } else {

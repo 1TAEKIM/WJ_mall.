@@ -44,7 +44,7 @@ public class ProductDAO {
             pstmt.setInt(5, product.getQuantity());
             pstmt.setString(6, product.getImageUrl());
             
-            pstmt.executeUpdate(); // 데이터베이스에 데이터를 삽입
+            pstmt.executeUpdate();
             
         } catch (Exception e) {
             e.printStackTrace();
