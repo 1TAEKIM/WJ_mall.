@@ -20,7 +20,7 @@ request.setAttribute("users", userList);
 <body>
     <a href="main.jsp" id="logo"><img src="../css/wj_logo.png"></a>
     <table>
-    <h2>Admin Main</h2>
+    <h2>Member management</h2>
         <tr>
             <th>ID</th>
             <th>Name</th>

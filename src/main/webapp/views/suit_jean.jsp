@@ -40,34 +40,7 @@
     	&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;<a href="suit_vest.jsp">정장 조끼</a>
 	</div>
     <br>
-    
-<%--     <div id="wrapper">
-    <% 
-    try {
-        ProductDAO productDAO = new ProductDAO();
-        List<Product> productList = productDAO.getAllProductsByCategory("정장 세트");
-        
-        for (Product product : productList) {
-    %>
-    <div class="card">
-        <header><a href="productDetail.jsp?productNum=<%= product.getProductNum() %>"><%= product.getName() %></a></header>
-
-        <img class="product_image" src="<%= product.getImageUrl() %>" alt="Product Image">
-        <p>가격: <%= product.getPrice() %>원</p>
-        <p>설명: <%= product.getDescription() %></p>
-    </div>
-    <% 
-        }
-    } catch (Exception e) {
-        e.printStackTrace();
-        out.println("상품 목록을 가져오는 중에 오류가 발생했습니다.");
-    }
-    %>
-    </div> --%>
-    
-    
-    
-    
+     
     
     <div id="contents">
      

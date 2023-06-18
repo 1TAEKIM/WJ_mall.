@@ -21,7 +21,7 @@ public class JoinMembershipController extends HttpServlet {
             throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
-        // JSP 페이지에서 전달된 데이터 가져오기
+
         String id = request.getParameter("id");
         String password = request.getParameter("password");
         String name = request.getParameter("name");
