@@ -2,6 +2,14 @@
 
 기술 스택:HTML, CSS, HBase, JSP, JAVA (MVC 패턴)
 
+
+- DB 구상도 -
+
+![image](https://github.com/1TAEKIM/WJ_mall./assets/100057980/bc2e57b7-ca10-47c2-a0ae-dbef9c57391f)
+
+
+
+
 - 구현 기능 -
    모든 기능 HBase DB 연동
 
