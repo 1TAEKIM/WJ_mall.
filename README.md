@@ -3,7 +3,7 @@
 기술 스택:HTML, CSS, HBase, JSP, JAVA (MVC 패턴)
 
 - 구현 기능 -
-모든 기능 HBase DB 연동
+ 모든 기능 HBase DB 연동
 
 회원 가입, 유효성 제약, 회원 찾기
 로그인/로그아웃(회원 등급 구분)
